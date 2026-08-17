@@ -1,0 +1,34 @@
+name: Validate Catalog
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-catalog:
+    name: validate-catalog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout catalog
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Checkout aio-fleet
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: wgross19/aio-fleet
+          ref: 5ec144086658a99d7c65ecd16120953e5c481691
+          path: .aio-fleet
+
+      - name: Install aio-fleet
+        run: python3 -m pip install ./.aio-fleet
+
+      - name: Validate catalog
+        run: python3 -m aio_fleet --manifest .aio-fleet/fleet.yml validate-catalog --catalog-path .
+
+      - name: Audit catalog quality
+        run: python3 -m aio_fleet --manifest .aio-fleet/fleet.yml catalog-audit --catalog-path .

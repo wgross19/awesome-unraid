@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maintainer>
+  <Icon>https://raw.githubusercontent.com/wgross19/awesome-unraid/main/icons/profile.png</Icon>
+  <Profile>Unraid App Factory publishes practical All-in-One containers for personal homelab use. Public templates are maintained as a secondary portfolio and community contribution.</Profile>
+  <WebPage>https://github.com/wgross19</WebPage>
+  <Forum>https://forums.unraid.net/</Forum>
+  <DonateText>Unraid App Factory is maintained as a personal homelab project.</DonateText>
+</Maintainer>
