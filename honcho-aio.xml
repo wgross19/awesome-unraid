@@ -19,11 +19,18 @@ First run:
 5. Start, then point Hermes with: hermes memory setup → http://&lt;lan&gt;:8000
 
 The chat model must support tool/function calling. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
-  <Changes>### 2026-08-23
-- Generated from CHANGELOG.md during release preparation. Do not edit manually.
-- Rewrite XML to Unraid CA Config attribute shape (Type/Display/Mask)
-- Honcho v3.0.12, PostgreSQL 17+pgvector, Redis, s6
-- Provider abstraction and embedding dimension guard</Changes>
+  <Changes>### 2026-08-23&#xD;
+- Generated from CHANGELOG.md during release preparation. Do not edit manually.&#xD;
+- Complete honcho-aio Dockerfile with s6-overlay, PG17+pgvector, Redis, Honcho v3.0.12 compile&#xD;
+- Fix s6 services + cont-init bootstrap to match spec&#xD;
+- Provider abstraction — &lt;provider&gt;/&lt;model&gt; parsing + dimension guard&#xD;
+- Unraid XML template (honcho-aio.xml)&#xD;
+- Rewrite honcho-aio.xml to Unraid CA Config attribute shape&#xD;
+- Track generated .aio-fleet.yml fleet contract&#xD;
+- Validate + pytest (10 unit, 9 integration) + trunk green&#xD;
+- Reconcile pgvector dims with EMBEDDING_VECTOR_DIMENSIONS at api start&#xD;
+- Catalog-ready XML and published fleet contract&#xD;
+- Set fleet upstream version_key to HONCHO_VERSION</Changes>
   <Category>AI Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/wgross19/awesome-unraid/main/honcho-aio.xml</TemplateURL>
