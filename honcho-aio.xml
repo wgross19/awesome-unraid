@@ -9,7 +9,9 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/wgross19/honcho-aio/issues</Support>
   <Project>https://github.com/wgross19/honcho-aio</Project>
-  <Overview>Honcho all-in-one for Unraid: persistent memory for AI agents. One container runs Honcho (FastAPI on port 8000), PostgreSQL 17 + pgvector, Redis, and s6. Postgres and Redis listen on 127.0.0.1 only.
+  <Overview>Honcho is memory infrastructure for agents that track people, sessions, and ideas over time. Store messages. Let it derive. Query context or search.
+
+honcho-aio packages that for Unraid. One container. Honcho on port 8000. Postgres and Redis inside, not on the LAN. Set a password and &lt;provider&gt;/&lt;model&gt; strings. Then hermes memory setup → http://&lt;lan&gt;:8000.
 
 First run:
 1. Set PostgreSQL Password (required). The container exits 64 if it is empty.
@@ -43,7 +45,7 @@ The chat model must support tool/function calling. At boot the image probes embe
   <DateInstalled/>
   <DonateText>Support wgross19 on GitHub Sponsors.</DonateText>
   <DonateLink>https://github.com/sponsors/wgross19</DonateLink>
-  <Description/>
+  <Description>Honcho is memory for stateful agents. It stores messages, reasons in the background, then returns context, search, and peer conclusions. honcho-aio runs that stack as one image: Honcho API, PostgreSQL 17 + pgvector, Redis, and s6. Databases stay on loopback. Point Hermes at http://&lt;lan&gt;:8000. No MCP.</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish>
