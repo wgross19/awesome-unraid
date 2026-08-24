@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: wgross19/aio-fleet
-          ref: 5ec144086658a99d7c65ecd16120953e5c481691
+          ref: 6aadf86ea94a11d1d5c3080a67243dc507eb981f
           path: .aio-fleet
 
       - name: Install aio-fleet

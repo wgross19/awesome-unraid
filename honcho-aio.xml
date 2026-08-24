@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/wgross19/honcho-aio/issues</Support>
   <Project>https://github.com/wgross19/honcho-aio</Project>
-  <Overview>Honcho is memory infrastructure for agents that track people, sessions, and ideas over time. Store messages. Let it derive. Query context or search.
+  <Overview>Honcho is memory infrastructure for agents that track people, sessions, and ideas over time. The default setup runs Honcho with its internal Postgres and Redis services. Store messages. Let it derive. Query context or search.
 
 honcho-aio packages that for Unraid. One container. Honcho on port 8000. Postgres and Redis inside, not on the LAN. Set a password and &lt;provider&gt;/&lt;model&gt; strings. Then hermes memory setup → http://&lt;lan&gt;:8000.
 
@@ -20,7 +20,7 @@ First run:
 4. Fill only the API key for the provider you picked.
 5. Start, then point Hermes with: hermes memory setup → http://&lt;lan&gt;:8000
 
-The chat model must support tool/function calling. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
+The chat model must support tool/function calling. Advanced configuration can select a local or cloud provider and custom model settings. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
   <Changes>### 2026-08-23&#xD;
 - Generated from CHANGELOG.md during release preparation. Do not edit manually.&#xD;
 - Complete honcho-aio Dockerfile with s6-overlay, PG17+pgvector, Redis, Honcho v3.0.12 compile&#xD;
