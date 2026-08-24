@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/wgross19/gbrain-aio/issues</Support>
   <Project>https://github.com/wgross19/gbrain-aio</Project>
-  <Overview>Vanilla GBrain all-in-one for Unraid. One s6 container runs PostgreSQL 17 + pgvector, the official GBrain HTTP server, a Caddy TLS reverse proxy, the GBrain job supervisor, and in-container maintain (autopilot every 30 minutes, nightly dream, weekly doctor). Postgres listens on loopback only and is never published. Agents connect only through the MCP endpoint, never to Postgres.
+  <Overview>Vanilla GBrain all-in-one for Unraid. The default setup runs one s6 container with the standard GBrain services. PostgreSQL 17 + pgvector, the official GBrain HTTP server, a Caddy TLS reverse proxy, the GBrain job supervisor, and in-container maintain (autopilot every 30 minutes, nightly dream, weekly doctor). Postgres listens on loopback only and is never published. Agents connect only through the MCP endpoint, never to Postgres.
 
 First run:
 1. Set POSTGRES_PASSWORD (alphanumeric) and GBRAIN_ADMIN_BOOTSTRAP_TOKEN (32+ chars, alphanumeric + _-). Generate a token with: head -c 32 /dev/urandom | base64 | tr -d '+/=' | head -c 48
