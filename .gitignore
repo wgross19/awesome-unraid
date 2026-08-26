@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+_scratch/
+.project/canonical/
+.project/sync-state.json
+.DS_Store

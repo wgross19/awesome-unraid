@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "slug": "awesome-unraid",
+  "display_name": "Awesome Unraid",
+  "hermes_project_id": "p_06e7bccc",
+  "workspace_path": "/workspace/projects/awesome-unraid",
+  "cortex_record_path": "/cortex/projects/awesome-unraid",
+  "cortex_record_slug": "projects/awesome-unraid",
+  "cortex_source": "cortex",
+  "board_slug": "awesome-unraid",
+  "canonical_writer": "gbrain-mcp",
+  "worker_root": "/workspace/projects/awesome-unraid",
+  "template_revision": "focused-workers-v2",
+  "startup_context": {
+    "file": "AGENTS.md",
+    "discovery": "outside-git-cwd-only",
+    "max_characters": 20000,
+    "competing_files": [
+      ".hermes.md",
+      "HERMES.md",
+      "agents.md",
+      "AGENTS.override.md"
+    ],
+    "read_after_startup": [
+      "progress.md"
+    ]
+  },
+  "worker_policy": {
+    "eligible_profiles": [
+      "researcher",
+      "slut",
+      "verifier"
+    ],
+    "dispatch_enabled": false,
+    "canary_required": true,
+    "canary_receipt": null,
+    "allowed_workspace_root": "/workspace/projects/awesome-unraid",
+    "forbidden_paths": [
+      "/cortex",
+      "/opt/data",
+      "/docker-compose",
+      "/repos"
+    ],
+    "forbid_other_project_benches": true,
+    "forbidden_mcp_servers": [
+      "gbrain"
+    ],
+    "orchestrator_only_paths": [
+      ".project/canonical",
+      ".project/sync-state.json",
+      "project.json"
+    ]
+  },
+  "core_documents": {
+    "agents": {
+      "local": "AGENTS.md",
+      "canonical_slug": "projects/awesome-unraid/agents"
+    },
+    "overview": {
+      "local": "overview.md",
+      "canonical_slug": "projects/awesome-unraid/overview"
+    },
+    "plan": {
+      "local": "plan.md",
+      "canonical_slug": "projects/awesome-unraid/plan"
+    },
+    "progress": {
+      "local": "progress.md",
+      "canonical_slug": "projects/awesome-unraid/progress"
+    },
+    "decisions": {
+      "local": "decisions.md",
+      "canonical_slug": "projects/awesome-unraid/decisions"
+    },
+    "execution_log": {
+      "local": "execution_log.md",
+      "canonical_slug": "projects/awesome-unraid/execution_log"
+    }
+  },
+  "metadata": {
+    "canonical_snapshots": ".project/canonical",
+    "sync_state": ".project/sync-state.json",
+    "validator": "tools/validate_project_bench.py",
+    "synchronizer": "tools/gbrain_sync_cli.py",
+    "sync_engine": "tools/project_sync.py",
+    "alignment_validator": "tools/project_alignment.py",
+    "test_suite": "tests"
+  }
+}
