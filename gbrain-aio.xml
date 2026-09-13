@@ -17,17 +17,13 @@ First run (details are in each field's help text):
 3. Set Brain Path to an empty folder.
 4. Start, then open https://&lt;lan&gt;:3132/admin/ and paste the token.
 5. Trust the generated CA once.</Overview>
-  <Changes>### 2026-09-12&#xD;
+  <Changes>### 2026-09-13&#xD;
 - Generated from CHANGELOG.md during release preparation. Do not edit manually.&#xD;
-- Cert idempotence check matched wrong SAN rendering (IP Address: vs IP:)&#xD;
-- Repin debian base to multi-arch digest (arm64 build broke under qemu)&#xD;
-- Accept shfmt's ${VAR-} normalization in the env-scan regex&#xD;
-- Trunk fmt docs + shellcheck fixes; drop dead loop in contract test&#xD;
-- Black formatting on test files&#xD;
-- Nosec annotations for bandit in contract test&#xD;
-- Black reformat contract test&#xD;
-- Nosec B405 on the ET import&#xD;
-- Bandit nosec codes space-separated</Changes>
+- Single appdata root (AIO_APPDATA) with auto-created sub-folders&#xD;
+- Bootstrap order — derive paths before creating dirs&#xD;
+- Caddy renders to /etc/caddy/Caddyfile (run script read the unrendered path)&#xD;
+- Nosec B101 on new asserts + trunk fmt&#xD;
+- Shfmt blank-line normalization in bootstrap</Changes>
   <Category>AI Tools:Utilities</Category>
   <WebUI>https://[IP]:[PORT:3132]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/wgross19/awesome-unraid/main/gbrain-aio.xml</TemplateURL>
@@ -53,18 +49,8 @@ First run (details are in each field's help text):
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/gbrain-aio/data/postgres</HostDir>
-      <ContainerDir>/data/postgres</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir>/mnt/user/appdata/gbrain-aio/gbrain-home</HostDir>
-      <ContainerDir>/var/lib/gbrain</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir>/mnt/user/appdata/gbrain-aio/caddy</HostDir>
-      <ContainerDir>/config/caddy</ContainerDir>
+      <HostDir>/mnt/user/appdata/gbrain-aio</HostDir>
+      <ContainerDir>/data/aio</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
@@ -76,9 +62,7 @@ First run (details are in each field's help text):
   <Environment/>
 
   <Config Name="Web UI Port" Target="3132" Default="3132" Mode="tcp" Description="Published HTTPS port (Caddy)." Type="Port" Display="always" Required="true" Mask="false">3132</Config>
-  <Config Name="Postgres Data" Target="/data/postgres" Default="/mnt/user/appdata/gbrain-aio/data/postgres" Mode="rw" Description="Persistent PostgreSQL data." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/gbrain-aio/data/postgres</Config>
-  <Config Name="GBrain Home" Target="/var/lib/gbrain" Default="/mnt/user/appdata/gbrain-aio/gbrain-home" Mode="rw" Description="GBrain config, OAuth secrets, runtime.env." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/gbrain-aio/gbrain-home</Config>
-  <Config Name="Caddy Certs" Target="/config/caddy" Default="/mnt/user/appdata/gbrain-aio/caddy" Mode="rw" Description="Persistent TLS certs and CA." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/gbrain-aio/caddy</Config>
+  <Config Name="Appdata Root" Target="/data/aio" Default="/mnt/user/appdata/gbrain-aio" Mode="rw" Description="Single persistent folder. Sub-folders are created automatically: data/postgres (database), gbrain-home (config, OAuth, runtime.env), caddy (TLS certs + CA)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/gbrain-aio</Config>
   <Config Name="Brain Path" Target="/my-brain" Default="/mnt/user/my-brain" Mode="rw" Description="Host path to the brain markdown repo. This is the folder GBrain reads/writes as its knowledge base. It should be an empty folder (or a git repo) that GBrain will initialize. The folder name must match the Source Name below." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/my-brain</Config>
   <Config Name="Postgres User" Target="POSTGRES_USER" Default="gbrain" Mode="" Description="Postgres superuser. Keep gbrain." Type="Variable" Display="advanced" Required="false" Mask="false">gbrain</Config>
   <Config Name="Postgres Password" Target="POSTGRES_PASSWORD" Default="" Mode="" Description="REQUIRED. Alphanumeric only (A-Za-z0-9). Secret. Example: mypass123. Generate: head -c 16 /dev/urandom | base64 | tr -d '+/=' | head -c 16" Type="Variable" Display="always" Required="true" Mask="true"/>
