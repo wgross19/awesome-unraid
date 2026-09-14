@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/wgross19/honcho-aio/issues</Support>
   <Project>https://github.com/wgross19/honcho-aio</Project>
-  <Overview>Honcho is memory infrastructure for agents that track people, sessions, and ideas over time. The default setup runs Honcho with its internal Postgres and Redis services. Store messages. Let it derive. Query context or search.
+  <Overview>Honcho is memory infrastructure for agents that track people, sessions, and ideas over time. Store messages. Let it derive. Query context or search.
 
 honcho-aio packages that for Unraid. One container. Honcho on port 8000. Postgres and Redis inside, not on the LAN. Set a password and &lt;provider&gt;/&lt;model&gt; strings. Then hermes memory setup → http://&lt;lan&gt;:8000.
 
@@ -20,19 +20,20 @@ First run:
 4. Fill only the API key for the provider you picked.
 5. Start, then point Hermes with: hermes memory setup → http://&lt;lan&gt;:8000
 
-The chat model must support tool/function calling. Advanced configuration can select a local or cloud provider and custom model settings. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
-  <Changes>### 2026-08-23&#xD;
+The chat model must support tool/function calling. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
+  <Changes>### 2026-09-03&#xD;
 - Generated from CHANGELOG.md during release preparation. Do not edit manually.&#xD;
-- Complete honcho-aio Dockerfile with s6-overlay, PG17+pgvector, Redis, Honcho v3.0.12 compile&#xD;
-- Fix s6 services + cont-init bootstrap to match spec&#xD;
-- Provider abstraction — &lt;provider&gt;/&lt;model&gt; parsing + dimension guard&#xD;
-- Unraid XML template (honcho-aio.xml)&#xD;
-- Rewrite honcho-aio.xml to Unraid CA Config attribute shape&#xD;
-- Track generated .aio-fleet.yml fleet contract&#xD;
-- Validate + pytest (10 unit, 9 integration) + trunk green&#xD;
-- Reconcile pgvector dims with EMBEDDING_VECTOR_DIMENSIONS at api start&#xD;
-- Catalog-ready XML and published fleet contract&#xD;
-- Set fleet upstream version_key to HONCHO_VERSION</Changes>
+- Rewrite honcho-aio README and guides as a real app&#xD;
+- Apply Honcho + AIO product description&#xD;
+- Escape changelog provider/model for markdownlint&#xD;
+- Replace README HTML icon block with markdown image&#xD;
+- Replace README HTML icon block with markdown image&#xD;
+- Pin HONCHO_GIT_SHA to the v3.1.0 commit&#xD;
+- Resolve LOCAL_API_KEY for local/ chat models (GH #2)&#xD;
+- Use official Honcho logo as app icon&#xD;
+- Prune stale worktrees + remove disposable venvs&#xD;
+- Optimize app-icon.png with oxipng&#xD;
+- Bump honcho to v3.1.0</Changes>
   <Category>AI Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/wgross19/awesome-unraid/main/honcho-aio.xml</TemplateURL>
@@ -92,7 +93,7 @@ The chat model must support tool/function calling. Advanced configuration can se
   <Config Name="Anthropic API Key" Target="LLM_ANTHROPIC_API_KEY" Default="" Mode="" Description="Used when CHAT_MODEL uses anthropic/. Chat only." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Gemini API Key" Target="LLM_GEMINI_API_KEY" Default="" Mode="" Description="Used when EMBEDDING_MODEL or CHAT_MODEL uses gemini/." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Ollama API Key" Target="OLLAMA_API_KEY" Default="ollama" Mode="" Description="Default ollama. Used when provider is ollama/." Type="Variable" Display="always" Required="false" Mask="true">ollama</Config>
-  <Config Name="Local Provider API Key" Target="LOCAL_API_KEY" Default="" Mode="" Description="Optional. Needed only if the local OpenAI-compat endpoint requires a key." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Local Provider API Key" Target="LOCAL_API_KEY" Default="" Mode="" Description="Optional. Needed only if the local OpenAI-compat endpoint requires a key. Empty is fine: the container substitutes a placeholder, because Honcho rejects an empty key." Type="Variable" Display="always" Required="false" Mask="true"/>
 
   <Config Name="Enable Authentication" Target="AUTH_USE_AUTH" Default="false" Mode="" Description="Set true to enable JWT auth on the Honcho API." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="JWT Secret" Target="AUTH_JWT_SECRET" Default="" Mode="" Description="Optional static JWT secret. Empty means generate on first boot." Type="Variable" Display="advanced" Required="false" Mask="true"/>
