@@ -25,10 +25,11 @@ Basic/default setup: follow these steps and use the internal PostgreSQL and Redi
 Advanced configuration can select local or cloud providers and custom model settings, including embedding dimensions. Optional advanced fields control API authentication, metrics, telemetry, Sentry, webhooks, worker count, logging, and namespace.
 
 The chat model must support tool/function calling. At boot the image probes embedding width. A mismatch with EMBEDDING_VECTOR_DIMENSIONS fails boot.</Overview>
-  <Changes>### 2026-10-08&#xD;
+  <Changes>### 2026-11-04&#xD;
 - Generated from CHANGELOG.md during release preparation. Do not edit manually.&#xD;
-- Bump honcho to v3.1.1 (#14)&#xD;
-- Bump honcho to v3.3.0 (#39)</Changes>
+- Clarify catalog setup guidance (#41)&#xD;
+- Install the s6-overlay tarball for the build arch so arm64 boots&#xD;
+- Persist RDB snapshots to /data/redis (#50)</Changes>
   <Category>AI Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/wgross19/awesome-unraid/main/honcho-aio.xml</TemplateURL>
